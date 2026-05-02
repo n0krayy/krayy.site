@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Brayy – IT, Cybersecurity & Automation. Terminal-style personal portfolio." />
+  <title>brayy.site</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     BOOT OVERLAY
+════════════════════════════════════════════ -->
+<div id="boot-overlay">
+  <div id="boot-log"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     MAIN TERMINAL WINDOW
+════════════════════════════════════════════ -->
+<div id="app" class="hidden">
+
+  <!-- Terminal Chrome -->
+  <div class="term-titlebar">
+    <div class="term-controls">
+      <span class="dot dot-red"></span>
+      <span class="dot dot-yellow"></span>
+      <span class="dot dot-green"></span>
+    </div>
+    <div class="term-title">brayy@portfolio ~ bash</div>
+    <div class="term-meta" id="session-time"></div>
+  </div>
+
+  <!-- ── NAV BAR ─────────────────────────────── -->
+  <nav class="term-nav" id="term-nav">
+    <span class="nav-prompt">nav</span>
+    <a href="#hero"       class="nav-cmd" data-cmd="~">~/</a>
+    <a href="#about"      class="nav-cmd" data-cmd="about">about</a>
+    <a href="#skills"     class="nav-cmd" data-cmd="skills">skills</a>
+    <a href="#projects"   class="nav-cmd" data-cmd="projects">projects</a>
+    <a href="#experience" class="nav-cmd" data-cmd="exp">exp</a>
+    <a href="#blog"       class="nav-cmd" data-cmd="blog">blog</a>
+    <a href="#contact"    class="nav-cmd" data-cmd="contact">contact</a>
+    <span class="nav-divider">|</span>
+    <button class="nav-cmd" id="open-cli-btn" title="Open command input">&gt;_</button>
+  </nav>
+
+  <!-- ── TERMINAL BODY ─────────────────────────── -->
+  <main class="term-body">
+
+    <!-- ── CLI INPUT BAR ──────────────────────── -->
+    <div id="cli-bar" class="hidden">
+      <div class="cli-line">
+        <span class="prompt-user">brayy</span><span class="prompt-at">@</span><span class="prompt-host">portfolio</span><span class="prompt-sep">:</span><span class="prompt-path" id="cli-path">~</span><span class="prompt-dollar">$</span>
+        <input id="cli-input" type="text" autocomplete="off" spellcheck="false" placeholder="type a command... (try 'help')" />
+        <span class="cursor-block"></span>
+      </div>
+      <div id="cli-output"></div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 1 — HERO
+    ════════════════════════════════════════ -->
+    <section id="hero" class="term-section">
+      <div class="cmd-line">
+        <span class="prompt-full">brayy@portfolio:~$</span>
+        <span class="cmd-text typed" id="hero-cmd">./init-portfolio.sh</span>
+      </div>
+
+      <div class="output-block hero-output" id="hero-output">
+        <div class="boot-banner">
+          <pre class="ascii-logo" aria-label="Brayy">
+ ██████╗ ██████╗  █████╗ ██╗   ██╗██╗   ██╗     ██╗    ██╗  ██╗██████╗  █████╗ ██╗   ██╗██╗   ██╗
+ ██╔══██╗██╔══██╗██╔══██╗╚██╗ ██╔╝╚██╗ ██╔╝     ██║    ██║ ██╔╝██╔══██╗██╔══██╗╚██╗ ██╔╝╚██╗ ██╔╝
+ ██████╔╝██████╔╝███████║ ╚████╔╝  ╚████╔╝      ██║    █████╔╝ ██████╔╝███████║ ╚████╔╝  ╚████╔╝ 
+ ██╔══██╗██╔══██╗██╔══██║  ╚██╔╝    ╚██╔╝       ██║    ██╔═██╗ ██╔══██╗██╔══██║  ╚██╔╝    ╚██╔╝  
+ ██████╔╝██║  ██║██║  ██║   ██║      ██║        ██║    ██║  ██╗██║  ██║██║  ██║   ██║      ██║   
+ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝      ╚═╝        ╚═╝    ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝      ╚═╝   
+          </pre>
+        </div>
+
+        <div class="hero-info reveal-lines">
+          <p><span class="kw">NAME</span>     <span class="val">Brayy | Krayy</span></p>
+          <p><span class="kw">ROLE</span>     <span class="val">IT · Cybersecurity · Automation</span></p>
+          <p><span class="kw">STATUS</span>   <span class="tag tag-green">● ONLINE</span></p>
+          <p><span class="kw">MISSION</span>  <span class="dim">Building systems, learning security, and documenting the journey.</span></p>
+          <p><span class="kw">UPTIME</span>   <span class="val" id="uptime-val">calculating...</span></p>
+        </div>
+
+        <div class="hero-menu reveal-lines">
+          <p class="dim">──────────────────────────────────────────</p>
+          <p class="dim">Available commands:</p>
+          <div class="cmd-grid">
+            <a href="#about"      class="menu-item"><span class="acc">[1]</span> about</a>
+            <a href="#skills"     class="menu-item"><span class="acc">[2]</span> skills</a>
+            <a href="#projects"   class="menu-item"><span class="acc">[3]</span> projects</a>
+            <a href="#experience" class="menu-item"><span class="acc">[4]</span> experience</a>
+            <a href="#blog"       class="menu-item"><span class="acc">[5]</span> blog</a>
+            <a href="#contact"    class="menu-item"><span class="acc">[6]</span> contact</a>
+          </div>
+          <p class="dim tip">Tip: press <kbd>&gt;_</kbd> in the nav bar to open the command terminal.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 2 — ABOUT
+    ════════════════════════════════════════ -->
+    <section id="about" class="term-section">
+      <div class="cmd-line">
+        <span class="prompt-full">brayy@portfolio:~$</span>
+        <span class="cmd-text">cat about.txt</span>
+      </div>
+
+      <div class="output-block">
+        <div class="file-header">
+          <span class="comment"># ── about.txt ──────────────────────────────────────</span>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-col">
+            <p class="section-label">// WHO AM I</p>
+            <p>A hands-on learner focused on cybersecurity, automation, and building practical digital systems. I spend my time breaking things, learning why they broke, and rebuilding them better.</p>
+            <br/>
+            <p class="section-label">// BACKGROUND</p>
+            <p>Self-taught, labs-first approach. I combine formal study with real-world experimentation across CTF challenges, home lab setups, and automation scripting.</p>
+          </div>
+          <div class="about-col">
+            <p class="section-label">// CURRENT FOCUS</p>
+            <ul class="term-list">
+              <li>Offensive security fundamentals</li>
+              <li>Network analysis &amp; defense</li>
+              <li>Python / Bash automation</li>
+              <li>Web3 infrastructure &amp; tooling</li>
+              <li>Marketing, Documentation &amp; write-ups</li>
+            </ul>
+            <br/>
+            <p class="section-label">// INTERESTS</p>
+            <ul class="term-list">
+              <li>AI Agents · AI Automations</li>
+              <li>Open-source security tools</li>
+              <li>Linux internals</li>
+              <li>Digital privacy &amp; OPSEC</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="dim mt">── EOF ──</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 3 — SKILLS
+    ════════════════════════════════════════ -->
+    <section id="skills" class="term-section">
+      <div class="cmd-line">
+        <span class="prompt-full">brayy@portfolio:~$</span>
+        <span class="cmd-text">cat skills-stack.json</span>
+      </div>
+
+      <div class="output-block">
+        <div class="skills-json">
+          <p><span class="json-brace">{</span></p>
+
+          <div class="skill-group">
+            <p class="json-key">"cybersecurity"</p><span class="json-colon">: [</span>
+            <div class="skill-tags">
+              <span class="tag tag-green">Pentesting Basics</span>
+              <span class="tag tag-green">OSINT</span>
+              <span class="tag tag-green">CTF</span>
+              <span class="tag tag-green">Recon</span>
+              <span class="tag tag-green">Nmap</span>
+              <span class="tag tag-green">Burp Suite</span>
+              <span class="tag tag-green">Metasploit</span>
+            </div>
+            <span class="json-colon">],</span>
+          </div>
+
+          <div class="skill-group">
+            <p class="json-key">"networking"</p><span class="json-colon">: [</span>
+            <div class="skill-tags">
+              <span class="tag tag-red">TCP/IP</span>
+              <span class="tag tag-red">DNS</span>
+              <span class="tag tag-red">Wireshark</span>
+              <span class="tag tag-red">Firewall Config</span>
+              <span class="tag tag-red">VPN</span>
+              <span class="tag tag-red">Network Hardening</span>
+            </div>
+            <span class="json-colon">],</span>
+          </div>
+
+          <div class="skill-group">
+            <p class="json-key">"automation"</p><span class="json-colon">: [</span>
+            <div class="skill-tags">
+              <span class="tag tag-amber">Python</span>
+              <span class="tag tag-amber">Bash</span>
+              <span class="tag tag-amber">Shell Scripting</span>
+              <span class="tag tag-amber">Cron Jobs</span>
+              <span class="tag tag-amber">Task Automation</span>
+            </div>
+            <span class="json-colon">],</span>
+          </div>
+
+          <div class="skill-group">
+            <p class="json-key">"linux"</p><span class="json-colon">: [</span>
+            <div class="skill-tags">
+              <span class="tag tag-purple">Ubuntu</span>
+              <span class="tag tag-purple">Kali Linux</span>
+              <span class="tag tag-purple">Arch</span>
+              <span class="tag tag-purple">CLI Mastery</span>
+              <span class="tag tag-purple">Systemd</span>
+              <span class="tag tag-purple">SSH</span>
+            </div>
+            <span class="json-colon">],</span>
+          </div>
+
+          <div class="skill-group">
+            <p class="json-key">"web_scripting"</p><span class="json-colon">: [</span>
+            <div class="skill-tags">
+              <span class="tag tag-cyan">HTML/CSS</span>
+              <span class="tag tag-cyan">JavaScript</span>
+              <span class="tag tag-cyan">Python</span>
+              <span class="tag tag-cyan">Go</span>
+              <span class="tag tag-cyan">Git</span>
+              <span class="tag tag-cyan">REST APIs</span>
+              <span class="tag tag-cyan">Web Scraping</span>
+            </div>
+            <span class="json-colon">],</span>
+          </div>
+
+          <div class="skill-group">
+            <p class="json-key">"Digital Marketing"</p><span class="json-colon">: [</span>
+            <div class="skill-tags">
+              <span class="tag tag-teal">Content Strategy</span>
+              <span class="tag tag-teal">Social Media Growth</span>
+              <span class="tag tag-teal">Community Building</span>
+              <span class="tag tag-teal">Copywriting</span>
+              <span class="tag tag-teal">Campaign Strategy</span>
+            </div>
+            <span class="json-colon">],</span>
+          </div>
+
+          <div class="skill-group">
+            <p class="json-key">"tools"</p><span class="json-colon">: [</span>
+            <div class="skill-tags">
+              <span class="tag tag-dim">VS Code</span>
+              <span class="tag tag-dim">Obsidian</span>
+              <span class="tag tag-dim">Docker</span>
+              <span class="tag tag-dim">GitHub</span>
+              <span class="tag tag-dim">Notion</span>
+              <span class="tag tag-dim">WSL</span>
+              <span class="tag tag-dim">VirtualBox</span>
+              <span class="tag tag-dim">Canva</span>
+              <span class="tag tag-dim">Google Trends</span>
+            </div>
+            <span class="json-colon">]</span>
+          </div>
+
+          <p><span class="json-brace">}</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 4 — PROJECTS
+    ════════════════════════════════════════ -->
+    <section id="projects" class="term-section">
+      <div class="cmd-line">
+        <span class="prompt-full">brayy@portfolio:~/projects$</span>
+        <span class="cmd-text">ls -la</span>
+      </div>
+
+      <div class="output-block">
+        <p class="dim">total 4 projects | drwxr-xr-x brayy brayy</p>
+        <div class="projects-grid">
+
+          <article class="project-card" tabindex="0">
+            <div class="proj-header">
+              <span class="proj-icon">⬡</span>
+              <span class="proj-name">recon-automation-toolkit</span>
+              <span class="tag tag-green proj-status">● active</span>
+            </div>
+            <p class="proj-desc">Automated recon pipeline combining Nmap, theHarvester, and Subfinder. Outputs structured reports for target enumeration.</p>
+            <div class="proj-meta">
+              <span class="proj-meta-item"><span class="dim">stack:</span> Python · Bash · Nmap</span>
+              <span class="proj-meta-item"><span class="dim">role:</span> Solo Dev</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/n0krayy" class="proj-link">→ GitHub</a>
+              <a href="https://n0krayy.medium.com/" class="proj-link">→ Blog</a>
+            </div>
+          </article>
+
+          <article class="project-card" tabindex="0">
+            <div class="proj-header">
+              <span class="proj-icon">⬡</span>
+              <span class="proj-name">writeup-collection</span>
+              <span class="tag tag-cyan proj-status">● in-progress</span>
+            </div>
+            <p class="proj-desc">Documented solutions and methodology notes for TryHackMe rooms. Covers OSINT, privilege escalation, and web exploitation.</p>
+            <div class="proj-meta">
+              <span class="proj-meta-item"><span class="dim">stack:</span> Markdown · TryHackMe · HackTheBox · Portswigger</span>
+              <span class="proj-meta-item"><span class="dim">role:</span> Author</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://twitter.com/0drayne" class="proj-link">→ X</a>
+              <a href="https://n0krayy.medium.com/" class="proj-link">→ Blog</a>
+            </div>
+          </article>
+
+          <article class="project-card" tabindex="0">
+            <div class="proj-header">
+              <span class="proj-icon">⬡</span>
+              <span class="proj-name">personal-cyber-lab</span>
+              <span class="tag tag-amber proj-status">● active</span>
+            </div>
+            <p class="proj-desc">Home lab environment with vulnerable VMs, IDS/IPS setup, and network segmentation for offensive/defensive practice.</p>
+            <div class="proj-meta">
+              <span class="proj-meta-item"><span class="dim">stack:</span> VirtualBox · Kali · pfSense · WSL · Ubuntu</span>
+              <span class="proj-meta-item"><span class="dim">role:</span> Builder</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://n0krayy.medium.com/" class="proj-link">→ Blog</a>
+            </div>
+          </article>
+
+          <article class="project-card" tabindex="0">
+            <div class="proj-header">
+              <span class="proj-icon">⬡</span>
+              <span class="proj-name">portfolio-journal</span>
+              <span class="tag tag-dim proj-status">● active</span>
+            </div>
+            <p class="proj-desc">This site. A terminal-themed personal portfolio and learning journal tracking my progress in IT, security, and automation.</p>
+            <div class="proj-meta">
+              <span class="proj-meta-item"><span class="dim">stack:</span> HTML · CSS · JS</span>
+              <span class="proj-meta-item"><span class="dim">role:</span> Designer &amp; Dev</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/n0krayy" class="proj-link">→ GitHub</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 5 — EXPERIENCE
+    ════════════════════════════════════════ -->
+    <section id="experience" class="term-section">
+      <div class="cmd-line">
+        <span class="prompt-full">brayy@portfolio:~$</span>
+        <span class="cmd-text">cat journey.log</span>
+      </div>
+
+      <div class="output-block">
+        <div class="timeline">
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <p class="tl-date">2025-present</p>
+              <p class="tl-title">Active CTF &amp; Lab Practice</p>
+              <p class="tl-body">Consistent engagement with TryHackMe, HackTheBox, and Portswigger platforms, focusing on web exploitation, privilege escalation, and OSINT.</p>
+              <div class="tl-tags">
+                <span class="tag tag-green">TryHackMe</span>
+                <span class="tag tag-green">HackTheBox</span>
+                <span class="tag tag-green">Portswigger</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <p class="tl-date">2025</p>
+              <p class="tl-title">Home Lab Setup</p>
+              <p class="tl-body">Built a segmented home lab environment using WSL and VirtualBox with Kali Linux, Metasploitable, and custom firewall configs.</p>
+              <div class="tl-tags">
+                <span class="tag tag-amber">Infrastructure</span>
+                <span class="tag tag-amber">Networking</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <p class="tl-date">2024</p>
+              <p class="tl-title">Automation Scripting Journey</p>
+              <p class="tl-body">Developed Python, Golang, and Bash scripts for task automation, web scraping, and recon tooling. Built first public GitHub repos.</p>
+              <div class="tl-tags">
+                <span class="tag tag-cyan">Python</span>
+                <span class="tag tag-cyan">Go</span>
+                <span class="tag tag-cyan">Bash</span>
+              </div>
+            </div>
+          </div> 
+
+          <div class="tl-item">
+            <div class="tl-dot tl-dot-dim"></div>
+            <div class="tl-content">
+              <p class="tl-date">2024</p>
+              <p class="tl-title">Linux Deep Dive</p>
+              <p class="tl-body">Transitioned to Linux as primary OS. Learned networking fundamental and system internals, CLI tooling, and began exploring security-focused distributions.</p>
+              <div class="tl-tags">
+                <span class="tag tag-dim">Linux</span>
+                <span class="tag tag-dim">Self-Taught</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-dot tl-dot-dim"></div>
+            <div class="tl-content">
+              <p class="tl-date">2018</p>
+              <p class="tl-title">The Beginning</p>
+              <p class="tl-body">Started the IT journey — web development, basic web technologies, and the first spark of curiosity about how systems are exploited.</p>
+              <div class="tl-tags">
+                <span class="tag tag-dim">Origin</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <p class="dim mt">── end of log ──</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 6 — BLOG
+    ════════════════════════════════════════ -->
+    <section id="blog" class="term-section">
+      <div class="cmd-line">
+        <span class="prompt-full">brayy@portfolio:~/writeups$</span>
+        <span class="cmd-text">cat documentations.md</span>
+      </div>
+
+      <div class="output-block">
+        <p class="dim">Showing latest write-ups and notes:</p>
+        <br/>
+        <div class="blog-list">
+
+          <a href="https://n0krayy.medium.com/" class="blog-item">
+            <div class="blog-meta">
+              <span class="blog-date">2025-04-20</span>
+              <span class="tag tag-red">CTF</span>
+            </div>
+            <p class="blog-title">→ TryHackMe: RootMe Write-up — SUID Exploitation & Web Shell Upload</p>
+            <p class="blog-excerpt">Step-by-step walkthrough of the RootMe room with notes on finding SUID binaries and exploiting file upload filters.</p>
+          </a>
+
+          <a href="https://n0krayy.medium.com/" class="blog-item">
+            <div class="blog-meta">
+              <span class="blog-date">2025-03-15</span>
+              <span class="tag tag-amber">Automation</span>
+            </div>
+            <p class="blog-title">→ Building a Recon Pipeline with Python and Nmap</p>
+            <p class="blog-excerpt">How I automated target reconnaissance using Python, integrating Nmap output parsing and report generation.</p>
+          </a>
+
+          <a href="https://n0krayy.medium.com/" class="blog-item">
+            <div class="blog-meta">
+              <span class="blog-date">2025-02-28</span>
+              <span class="tag tag-cyan">Networking</span>
+            </div>
+            <p class="blog-title">→ Home Lab: Setting Up a Segmented Network for Security Testing</p>
+            <p class="blog-excerpt">A guide to building a safe, isolated lab environment for penetration testing practice using VirtualBox and pfSense.</p>
+          </a>
+
+          <a href="https://n0krayy.medium.com/" class="blog-item">
+            <div class="blog-meta">
+              <span class="blog-date">2025-01-10</span>
+              <span class="tag tag-green">Linux</span>
+            </div>
+            <p class="blog-title">→ Linux Privilege Escalation: A Practical Checklist</p>
+            <p class="blog-excerpt">My personal reference for common privilege escalation vectors: SUID, cron jobs, writable paths, sudo misconfigs, and more.</p>
+          </a>
+
+        </div>
+
+        <p class="dim mt">── <a href="https://n0krayy.medium.com/" class="inline-link">view all posts →</a> ──</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 7 — CONTACT
+    ════════════════════════════════════════ -->
+    <section id="contact" class="term-section">
+      <div class="cmd-line">
+        <span class="prompt-full">brayy@portfolio:~$</span>
+        <span class="cmd-text">cat social-links.env</span>
+      </div>
+
+      <div class="output-block">
+        <div class="env-file">
+          <p class="comment"># ── social_links.env ────────────────────────────────</p>
+          <p class="comment"># Contact and social media links — export to reach out</p>
+          <br/>
+          <p><span class="env-key">GITHUB</span><span class="env-eq">=</span><a href="https://github.com/n0krayy" class="env-val" target="_blank" rel="noopener">"github.com/brayy"</a></p>
+          <!--<p><span class="env-key">LINKEDIN</span><span class="env-eq">=</span><a href="https://linkedin.com" class="env-val" target="_blank" rel="noopener">"linkedin.com/in/brayy"</a></p> -->
+          <p><span class="env-key">TWITTER</span><span class="env-eq">=</span><a href="https://x.com/0Drayne" class="env-val" target="_blank" rel="noopener">"x.com/brayy"</a></p>
+          <p><span class="env-key">Instagram</span><span class="env-eq">=</span><a href="https://www.instagram.com/0drayne/" class="env-val">"instagram.com/brayy"</a></p>
+          <p><span class="env-key">YouTube</span><span class="env-eq">=</span><a href="https://www.youtube.com/@n0krayy" class="env-val">"youtube.com/krayy"</a></p>
+          <p><span class="env-key">EMAIL</span><span class="env-eq">=</span><a href="mailto:brayneroot@gmail.com" class="env-val">"hello@brayy.dev"</a></p>
+          <br/>
+          <p class="comment"># Run: export $(cat social_links.env | xargs) to load</p>
+        </div>
+
+        <div class="contact-note">
+          <p><span class="tag tag-green">OPEN TO</span> collaborations, etc<!--security projects, and learning partnerships-->.</p>
+          <p class="dim mt">Response time: usually within 24h</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ────────────────────────────── -->
+  <footer class="term-footer">
+    <div class="footer-line">
+      <span class="prompt-full">brayy@portfolio:~$</span>
+      <span class="cmd-text">exit</span>
+    </div>
+    <div class="footer-msg">
+      <span class="dim">Connection closed. Session saved. — </span>
+      <span class="val" id="footer-year"></span>
+      <span class="dim"> — built by Brayy</span>
+    </div>
+    <div class="footer-status">
+      <span class="tag tag-green">● ssh-rsa 2048</span>
+      <span class="dim"> | </span>
+      <span class="dim">uptime: </span><span id="footer-uptime" class="val">0s</span>
+    </div>
+  </footer>
+
+</div><!-- /#app -->
+
+<script src="script.js"></script>
+</body>
+</html>
